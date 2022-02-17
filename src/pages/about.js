@@ -6,10 +6,10 @@ export const About = () => {
     return ( 
         <div className="jumbotron">
   <h1 className="display-4">Note App</h1>
-  <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <p className="lead">Its simple React application used Redux-toolkit with midleware async thunk for load and save notes on google firebase. App was created as practice and improve coding skills ;']</p>
   <hr className="my-4"/>
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <Link className="btn btn-primary btn-lg" to="/" role="button">Ещё</Link>
+  <p>Stack used: React, Redux-toolkit, Axios, Google FireBase</p>
+  <Link className="btn btn-primary btn-lg" to="/" role="button">Back</Link>
 </div>
     )
 }

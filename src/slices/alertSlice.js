@@ -10,7 +10,7 @@ const alertSlice = createSlice({
     initialState,
     reducers: {
         show: (state, { payload }) => ({ ...payload, visible: true, text: payload.text, type: payload.type}),
-        hide: ({payload}) => ({visible: false})
+        hide: ({ payload }) => ({ visible: false })
     }
 });
 
