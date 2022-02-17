@@ -8,7 +8,6 @@ import {About} from './pages/about.js';
 function App() {
   return (
     <BrowserRouter>
-          
     <Navbar/>
       <div className='container pt-4'>
         <Alert alert={'danger'}/>
