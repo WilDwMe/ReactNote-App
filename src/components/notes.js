@@ -17,7 +17,7 @@ export const Notes = () => {
     console.log(notes);
 
     const removeHandler = (note) => {
-        dispatch(removeNote(note.id));
+        dispatch(removeNote(note));
     };
 
     if (notes.length === 0) {
@@ -43,7 +43,7 @@ export const Notes = () => {
                             <strong>{note.text}</strong>
                             <small>{new Date().toLocaleDateString()}</small>
                         </div>
-                        <button onClick={() => removeHandler(note)} type="button" className="btn btn-outline-danger btn-sm"><i className="bi bi-trash-fill"></i></button>
+                        <button onClick={() => removeHandler(note.id)} type="button" className="btn btn-outline-danger btn-sm"><i className="bi bi-trash-fill"></i></button>
                     </li>
                 </CSSTransition>
             ))}

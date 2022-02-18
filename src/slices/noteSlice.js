@@ -7,8 +7,14 @@ export const fetchNotes = createAsyncThunk(
     'notes/fetchNotes',
     async () => {
         const response = await axios.get(`${url}/notes.json`);
-        console.log(response.data);
-            return response.data;
+        console.log(response.name);
+
+        const fetchedData = []
+
+        for (let key in response.data) {
+            fetchedData.push({...response.data[key], id: key})
+        }
+        return fetchedData;
     }
 )
 
@@ -25,8 +31,7 @@ export const removeNote = createAsyncThunk(
     'notes/removeNote',
     async (id) => {
         console.log(id);
-        const res = await axios.delete(`${url}/notes/${id}.json`, id);
-        console.log(res.status)
+        await axios.delete(`${url}/notes/${id}.json`);
         return id;
     }
 )
@@ -44,8 +49,9 @@ const noteSlice = createSlice({
                 state.error = null;
             })
 
-            .addCase(fetchNotes.fulfilled, (state, action) => {
-                noteAdapter.addMany(state, action.payload);
+            .addCase(fetchNotes.fulfilled, (state, {payload}) => {
+                console.log(payload)
+                noteAdapter.addMany(state, payload);
                 state.loadnig = 'idle';
                 state.error = null;
             })
