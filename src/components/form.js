@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { show } from '../slices/alertSlice';
-import { addNote } from '../slices/noteSlice';
+import { sendNote } from '../slices/noteSlice';
 import _ from 'lodash';
 
 export const Form = () => {
@@ -14,7 +14,7 @@ export const Form = () => {
         e.preventDefault();
         if (value.trim()){
             dispatch(show({ visible: true, text: 'Note succesfull added', type: 'primary' }));
-            dispatch(addNote({ id: _.uniqueId(), text: value }))
+            dispatch(sendNote({ id: _.uniqueId(), text: value }))
             setValue('');
         } else {
             dispatch(show({ visible: true, text: 'Please write note before save it' }));
