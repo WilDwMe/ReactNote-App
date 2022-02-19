@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { show } from '../slices/alertSlice';
 import { sendNote } from '../slices/noteSlice';
+
 import _ from 'lodash';
 
 export const Form = () => {

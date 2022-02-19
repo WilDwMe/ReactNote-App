@@ -7,12 +7,10 @@ export const fetchNotes = createAsyncThunk(
     'notes/fetchNotes',
     async () => {
         const response = await axios.get(`${url}/notes.json`);
-        console.log(response.name);
-
         const fetchedData = []
 
         for (let key in response.data) {
-            fetchedData.push({...response.data[key], id: key})
+            fetchedData.push({ note: { ...response.data[key] }, id: key})
         }
         return fetchedData;
     }
@@ -21,10 +19,18 @@ export const fetchNotes = createAsyncThunk(
 export const sendNote = createAsyncThunk(
     'notes/AddNote',
     async ({id, text}) => {
-        const { data } = await axios.post(`${url}/notes.json`, {id, text});
-        console.log(data.name);
-            return data.name;
+        const res = await axios.post(`${url}/notes.json`, { id, text })
+            .then(() => axios.get(`${url}/notes.json`)
+                .then((res) => res));
+        const fetchedData = []
+
+        for (let key in res.data) {
+            fetchedData.push({ note: { ...res.data[key] }, id: key})
+        }
+        return fetchedData;
+        
     }
+  
 )
 
 export const removeNote = createAsyncThunk(
@@ -50,14 +56,13 @@ const noteSlice = createSlice({
             })
 
             .addCase(fetchNotes.fulfilled, (state, {payload}) => {
-                console.log(payload)
                 noteAdapter.addMany(state, payload);
                 state.loadnig = 'idle';
                 state.error = null;
             })
 
-            .addCase(sendNote.fulfilled, (state, action) => {
-                noteAdapter.addOne(state, action);
+            .addCase(sendNote.fulfilled, (state, {payload}) => {
+                noteAdapter.addMany(state, payload);
                 state.loadnig = 'idle';
                 state.error = null;
             })

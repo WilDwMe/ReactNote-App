@@ -33,17 +33,17 @@ export const Notes = () => {
 
     return (
         <TransitionGroup component="ul" className="list-group">
-            {notes.map((note) => (
+            {notes.map(({id, note}) => (
                 <CSSTransition
                     className={'note'}
                     timeout={800}
-                    key={note.id}>
-                    <li className="list-group-item note" id={note.id}>
+                    key={id}>
+                    <li className="list-group-item note" id={id}>
                         <div className="note">
                             <strong>{note.text}</strong>
                             <small>{new Date().toLocaleDateString()}</small>
                         </div>
-                        <button onClick={() => removeHandler(note.id)} type="button" className="btn btn-outline-danger btn-sm"><i className="bi bi-trash-fill"></i></button>
+                        <button onClick={() => removeHandler(id)} type="button" className="btn btn-outline-danger btn-sm"><i className="bi bi-trash-fill"></i></button>
                     </li>
                 </CSSTransition>
             ))}
