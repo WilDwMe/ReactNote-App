@@ -28,7 +28,7 @@ export const Form = () => {
                 <input
                     type='text'
                     className='form-control'
-                    placeholder='Please enter name for new mark'
+                    placeholder='Please enter here a new note for record'
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                 />

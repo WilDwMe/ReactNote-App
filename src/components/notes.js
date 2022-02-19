@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchNotes, removeNote, selectors } from "../slices/noteSlice.js";
+import { fetchNotes, removeNote, selectors} from "../slices/noteSlice.js";
 import { Empty } from './empty.js';
 
 
@@ -9,14 +9,21 @@ export const Notes = () => {
 
     const dispatch = useDispatch();
     const notes = useSelector(selectors.selectAll);
+    const status = useSelector((state) => state.notes.loading);
 
     useEffect(() => {
+        console.log(status);
         dispatch(fetchNotes());
+        console.log(status);
     }, [dispatch])
 
     const removeHandler = (note) => {
         dispatch(removeNote(note));
     };
+
+    if (notes.length === 0) {
+        return <Empty />
+    }
 
     return (
         <TransitionGroup component="ul" className="list-group">

@@ -57,13 +57,13 @@ const noteSlice = createSlice({
 
             .addCase(fetchNotes.fulfilled, (state, {payload}) => {
                 noteAdapter.addMany(state, payload);
-                state.loadnig = 'idle';
+                state.loading = 'idle';
                 state.error = null;
             })
 
             .addCase(sendNote.fulfilled, (state, {payload}) => {
                 noteAdapter.addMany(state, payload);
-                state.loadnig = 'idle';
+                state.loading = 'idle';
                 state.error = null;
             })
 
@@ -82,4 +82,5 @@ const noteSlice = createSlice({
 
 export default noteSlice.reducer;
 export const selectors = noteAdapter.getSelectors((state) => state.notes);
+// export const status = noteAdapter.getSelectors((state) => state);
 

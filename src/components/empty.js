@@ -6,11 +6,7 @@ export const Empty = () => (
     <CSSTransition
     className={'note'}
     timeout={500}
-    key={_.uniqueId()}>
-        <li className="list-group-item note"
-            timeout={800}
-            key={_.uniqueId()}>
-            <div className="container-fluid ">Nothing here...</div>
-        </li>
+        key={_.uniqueId()}>
+        <div className="container-fluid" style={{ justifyContent: 'center', paddingBottom: '10px'}}>You don't have any notes...</div>
     </CSSTransition>
 )
