@@ -53,6 +53,7 @@ const noteSlice = createSlice({
             .addCase(fetchNotes.pending, (state) => {
                 state.loading = 'loading';
                 state.error = null;
+                
             })
 
             .addCase(fetchNotes.fulfilled, (state, {payload}) => {
@@ -69,8 +70,8 @@ const noteSlice = createSlice({
 
             .addCase(removeNote.fulfilled, (state, action) => {
                 noteAdapter.removeOne(state, action.payload);
-                // state.loadnig = 'idle';
-                // state.error = null;
+                state.loading = 'idle';
+                state.error = null;
             })
 
             .addCase(fetchNotes.rejected, (state, action) => {

@@ -12,6 +12,7 @@ export const Alert = () => {
     dispatch(hide());
   }
 
+
   return (
     <CSSTransition
       in={alert.visible}

@@ -3,6 +3,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchNotes, removeNote, selectors} from "../slices/noteSlice.js";
 import { Empty } from './empty.js';
+import { show, hide } from '../slices/alertSlice';
 
 
 export const Notes = () => {
@@ -12,13 +13,13 @@ export const Notes = () => {
     const status = useSelector((state) => state.notes.loading);
 
     useEffect(() => {
-        console.log(status);
         dispatch(fetchNotes());
-        console.log(status);
     }, [dispatch])
 
     const removeHandler = (note) => {
+        dispatch(show({ visible: true, text: 'Processing delete...', type: 'warning' }))
         dispatch(removeNote(note));
+        setTimeout(() => dispatch(hide()), 1500);
     };
 
     if (notes.length === 0) {

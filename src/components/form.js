@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { show } from '../slices/alertSlice';
+import { show, hide } from '../slices/alertSlice';
 import { sendNote } from '../slices/noteSlice';
 
 import _ from 'lodash';
@@ -17,6 +17,7 @@ export const Form = () => {
             dispatch(show({ visible: true, text: 'Note succesfull added', type: 'primary' }));
             dispatch(sendNote({ id: _.uniqueId(), text: value }))
             setValue('');
+            setTimeout(() => dispatch(hide()), 1500);
         } else {
             dispatch(show({ visible: true, text: 'Please write note before save it' }));
         }
