@@ -6,7 +6,7 @@ const url = process.env.REACT_APP_DB_URL;
 export const fetchNotes = createAsyncThunk(
     'notes/fetchNotes',
     async () => {
-        const response = await axios.get(`${url}/notes.json`);
+        const response = await axios.get(`${url}/notes.json?`);
         const fetchedData = []
 
         for (let key in response.data) {

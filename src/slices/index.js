@@ -7,4 +7,4 @@ export default configureStore({
         alert: alertReducer,
         notes: noteReducer,
     }
-})
+});
